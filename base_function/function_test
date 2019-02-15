@@ -1,0 +1,46 @@
+<?php
+
+//$fun = function ($arg1, $arg2){
+//    return $arg1 * $arg2;
+//};
+//
+//var_dump(call_user_func_array($fun, array(2,3)));
+
+/**
+ * the introduction said this is call callback function, but
+ * I still can not really understand this is the callback
+ * function caller.
+ */
+
+//function mega(&$num){
+//    $num = 55;
+//    echo "function mega \$a=$num\n";
+//}
+//
+//$bar = 77;
+//call_user_func_array('mega', array(&$bar));
+//echo "global bar = $bar\n";
+
+/**
+ * and it seems this is what we call reference parameter
+ */
+
+
+/************************** call_user_func ******************************/
+error_reporting(E_ALL);
+function increment(&$var){
+     $var++;
+}
+
+$a = 0;
+
+call_user_func('increment', $a);
+echo 'without ref '.$a."\n";
+
+call_user_func_array('increment', array(&$a));
+echo 'with ref '.$a."\n";
+/**
+ * there is one thing I should know is that, if you just call the method like call_user_func_array('increment', &$a)
+ * the php compile system seems throw exception directly.
+ * 这边的error_reporting还要学习下。
+ */
